@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<title>竹道后台管理系统</title>
+
+<!-- Bootstrap -->
+<link href="__STATIC__/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.__STATIC__/js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+	<div class="container">
+		<h1 align="center">记账操作</h1>
+		<div class="form-group">
+		<a href="{:url('index/bills_list')}" class="btn btn-primary">记账列表</a>
+		<a href="{:url('pub/login_out')}" class="btn btn-primary">退出登录</a>
+		</div>
+		<form role="form" action="{:url('index/add')}" method="post">
+			<div class="form-group">
+				<label for="name">类型</label> <select name="type_id" class="form-control">
+					{volist name="categoryList" id="vo"}
+					<option value="{$vo.id}" >{$vo.typename}</option>
+					{/volist}
+				</select>
+			</div>
+			<div class="form-group">
+				<label for="name">金额：格式 支出数字前加 "-"</label> <input type="number" name="money" class="form-control"
+					id="name" placeholder="请输入金额" required>
+			</div>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">提&nbsp;&nbsp;交</button>
+		</form>
+	</div>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="__STATIC__/js/bootstrap.min.js"></script>
+</body>
+</html>

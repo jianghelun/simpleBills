@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>竹道后台管理系统</title>
+	<!-- Bootstrap -->
+<link href="__STATIC__/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+<!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.__STATIC__/js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body style="font-size:30px;">
+<div style="padding:0% 5%;" class="table-responsive">
+	<table class="table">
+		<h1 align="center">记账列表</h1>
+		<div class="form-group">
+			<div style="float:left;margin-right:100%;">
+			<a style="font-size:30px;" href="{:url('index/index')}" class="btn btn-primary">继续记账</a>
+			</div>
+			{if condition="isset($sumData)"}
+			<div style="float:left;margin:1% 5%;">
+				总收入：{$sumData.money}元
+			</div>
+			<div style="float:left;margin:1% 1%;">
+				收入：<span style="color:green;">{$sumData.addSum}</span>元
+			</div>
+			<div style="float:left;margin:1% 1%;">
+				支出：<span style="color:red;">{$sumData.subSum}</span>元
+			</div>
+			{/if}
+		</div>
+		<thead>
+			<tr>
+				<th>记账时间</th>
+				<th>记账人员</th>
+				<th>记账类型</th>
+				<th>记账金额</th>
+			</tr>
+		</thead>
+		<tbody>
+			{volist name="list" id="vo"}
+			<tr>
+				<td>{$vo.create_at}</td>
+				<td>{$vo.nickname}</td>
+				<td>{$vo.typename}</td>
+				<td>
+				{if condition="$vo.money gt 0"}
+					<span style="color:green;">{$vo.money}</span>
+					{else /}
+					<span style="color:red;">{$vo.money}</span>
+				{/if}
+				</td>
+			</tr>
+			{/volist}
+		</tbody>
+</table>
+{$list->render()}
+</div>
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="__STATIC__/js/bootstrap.min.js"></script>
+</body>
+</html>
